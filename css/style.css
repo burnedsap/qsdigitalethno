@@ -28,6 +28,11 @@ src: url("../fonts/SpaceGrotesk-Medium.woff") format("woff");
 	--mw: 1024px;
 }
 
+#cf-context { 
+  width: 100vw; 
+  height: 100vh; 
+} 
+
 @media only screen and (max-width: 600px) {
 	:root {
 		--w: 90%;
