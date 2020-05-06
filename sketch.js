@@ -14,11 +14,19 @@
 // Complicated Knob
 // Daniel Shiffman <http://www.shiffman.net>
 
+let timer = 0;
+let bigtimer = 0;
 let img;
 let back;
+let white;
+let red;
+let bg = 255;
+let angsy = 0;
 function preload() {
 	img = loadImage('dial-n.png');
 	back = loadImage('background-c.png');
+	white = loadImage('white.png');
+	red = loadImage('red.png');
 }
 
 var dragging = false; // Is the slider being dragged?
@@ -43,16 +51,8 @@ function setup() {
 	rectMode(CENTER);
 }
 
-function delay(ms) {
-	var cur_d = new Date();
-	var cur_ticks = cur_d.getTime();
-	var ms_passed = 0;
-	while (ms_passed < ms) {
-		var d = new Date(); // Possible memory leak?
-		var ticks = d.getTime();
-		ms_passed = ticks - cur_ticks;
-		// d = null; // Prevent memory leak?
-	}
+function redButton() {
+	image(red, windowWidth / 2, windowHeight / 2, 1201 / 2, 1201 / 2);
 }
 
 function draw() {
@@ -63,8 +63,8 @@ function draw() {
 	translate(windowWidth / 2, windowHeight / 2);
 	fill(0);
 	rect(0, 0, 1001 / 2, 1001 / 2);
-//	console.log(degree);
-	if ((degree < 280) && (degree > 80)) {
+	//	console.log(degree);
+		if ((degree < 280) && (degree > 80)) {
 		rotate(angle);
 		stop = angle;
 	} else {
@@ -78,18 +78,18 @@ function draw() {
 	if ((degree < 280) && (degree > 262)) {
 		delay(dt);
 	}
-
-if ((degree < 164) && (degree > 150)) {
+	
+	if ((degree < 164) && (degree > 150)) {
 		delay(dt);
 	}
-
-if ((degree < 129) && (degree > 116)) {
-			delay(dt);
-		}
-
-if ((degree < 96) && (degree > 80)) {
-				delay(dt);
-			}
+	
+	if ((degree < 129) && (degree > 116)) {
+		delay(dt);
+	}
+	
+	if ((degree < 96) && (degree > 80)) {
+		delay(dt);
+	}
 	
 	stroke(255);
 	//	} else {
@@ -98,9 +98,42 @@ if ((degree < 96) && (degree > 80)) {
 		strokeWeight(50);
 	line(0, 0, 180, 0);
 	pop();
+		
+		
+		//Red Light Timer
+	//	if (millis() >= 5000 + bigtimer) {
+	//		if (millis() >= 500 + timer) {
+	//			image(red, windowWidth / 2, windowHeight / 2, 1201 / 2, 1201 / 2);
+	//			timer = millis();
+	//		}
+	//		if (millis() >= 500 + timer) {
+	//			image(red, windowWidth / 2, windowHeight / 2, 1201 / 2, 1201 / 2);
+	//			timer = millis();
+	//		}
+	//		if (millis() >= 500 + timer) {
+	//			image(red, windowWidth / 2, windowHeight / 2, 1201 / 2, 1201 / 2);
+	//			timer = millis();
+	//		}
+	//redButton();
+			
+	//		console.log('red');
+	//		bigtimer = millis();
+	//	}
 	
+	if (millis() >= 10000 + timer) {
+		tint(255, bg);
+		image(red, windowWidth / 2, windowHeight / 2, 1201 / 2, 1201 / 2);
+		bg = map(sin(angsy),  -1, 1, 0, 255);
+		angsy = angsy + 0.8;
+	}
+	
+	if (millis() >= 15000 + timer) {
+		tint(255, 255);
+		image(white, windowWidth / 2, windowHeight / 2, 1201 / 2, 1201 / 2);
+			}
 	
 	//Background
+	tint(255, 255);
 	image(back, windowWidth / 2, windowHeight / 2, 1201 / 2, 1201 / 2);
 	
 	//Rotate Dial
@@ -144,8 +177,8 @@ if ((degree < 96) && (degree > 80)) {
 		
 		degree = int(degrees(calcAngle));
 		textAlign(CENTER);
-//		text(int(degrees(calcAngle)), windowWidth / 2 , windowHeight / 2 + 40 + 20);
-		if (dragging && degree < 10) {
+		//		text(int(degrees(calcAngle)), windowWidth / 2 , windowHeight / 2 + 40 + 20);
+				if (dragging && degree < 10) {
 			count == 2;
 		}
 	}
@@ -171,4 +204,16 @@ function mousePressed() {
 function mouseReleased() {
 	  // Stop dragging
 	  dragging = false;
+}
+
+function delay(ms) {
+	var cur_d = new Date();
+	var cur_ticks = cur_d.getTime();
+	var ms_passed = 0;
+	while (ms_passed < ms) {
+		var d = new Date(); // Possible memory leak?
+		var ticks = d.getTime();
+		ms_passed = ticks - cur_ticks;
+		// d = null; // Prevent memory leak?
+	}
 }
