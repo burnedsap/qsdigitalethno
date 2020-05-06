@@ -71,25 +71,25 @@ function draw() {
 		rotate(stop);
 	}
 	
-	if ((degree < 200) && (degree > 185)) {
-		delay(dt);
-	}
-	
-	if ((degree < 280) && (degree > 262)) {
-		delay(dt);
-	}
-	
-	if ((degree < 164) && (degree > 150)) {
-		delay(dt);
-	}
-	
-	if ((degree < 129) && (degree > 116)) {
-		delay(dt);
-	}
-	
-	if ((degree < 96) && (degree > 80)) {
-		delay(dt);
-	}
+//	if ((degree < 200) && (degree > 185)) {
+//		delay(dt);
+//	}
+//	
+//	if ((degree < 280) && (degree > 262)) {
+//		delay(dt);
+//	}
+//	
+//	if ((degree < 164) && (degree > 150)) {
+//		delay(dt);
+//	}
+//	
+//	if ((degree < 129) && (degree > 116)) {
+//		delay(dt);
+//	}
+//	
+//	if ((degree < 96) && (degree > 80)) {
+//		delay(dt);
+//	}
 	
 	stroke(255);
 	//	} else {
@@ -100,26 +100,6 @@ function draw() {
 	pop();
 		
 		
-		//Red Light Timer
-	//	if (millis() >= 5000 + bigtimer) {
-	//		if (millis() >= 500 + timer) {
-	//			image(red, windowWidth / 2, windowHeight / 2, 1201 / 2, 1201 / 2);
-	//			timer = millis();
-	//		}
-	//		if (millis() >= 500 + timer) {
-	//			image(red, windowWidth / 2, windowHeight / 2, 1201 / 2, 1201 / 2);
-	//			timer = millis();
-	//		}
-	//		if (millis() >= 500 + timer) {
-	//			image(red, windowWidth / 2, windowHeight / 2, 1201 / 2, 1201 / 2);
-	//			timer = millis();
-	//		}
-	//redButton();
-			
-	//		console.log('red');
-	//		bigtimer = millis();
-	//	}
-	
 	if (millis() >= 10000 + timer) {
 		tint(255, bg);
 		image(red, windowWidth / 2, windowHeight / 2, 1201 / 2, 1201 / 2);
@@ -130,7 +110,7 @@ function draw() {
 	if (millis() >= 15000 + timer) {
 		tint(255, 255);
 		image(white, windowWidth / 2, windowHeight / 2, 1201 / 2, 1201 / 2);
-			}
+	}
 	
 	//Background
 	tint(255, 255);
