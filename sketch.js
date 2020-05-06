@@ -17,7 +17,7 @@
 let img;
 let back;
 function preload() {
-	img = loadImage('dial.png');
+	img = loadImage('dial-n.png');
 	back = loadImage('background-c.png');
 }
 
@@ -33,7 +33,7 @@ var count = 0;
 var calcAngle;
 var degree;
 var stop;
-
+var dt = 100;
 // Offset angle for turning knob
 var offsetAngle = 0;
 function setup() {
@@ -41,6 +41,18 @@ function setup() {
 	canvas.parent('sketch-holder');
 	imageMode(CENTER);
 	rectMode(CENTER);
+}
+
+function delay(ms) {
+	var cur_d = new Date();
+	var cur_ticks = cur_d.getTime();
+	var ms_passed = 0;
+	while (ms_passed < ms) {
+		var d = new Date(); // Possible memory leak?
+		var ticks = d.getTime();
+		ms_passed = ticks - cur_ticks;
+		// d = null; // Prevent memory leak?
+	}
 }
 
 function draw() {
@@ -51,13 +63,33 @@ function draw() {
 	translate(windowWidth / 2, windowHeight / 2);
 	fill(0);
 	rect(0, 0, 1001 / 2, 1001 / 2);
-	console.log(degree);
-	if ((degree < 264) && (degree > 91)) {
+//	console.log(degree);
+	if ((degree < 280) && (degree > 80)) {
 		rotate(angle);
 		stop = angle;
 	} else {
 		rotate(stop);
 	}
+	
+	if ((degree < 200) && (degree > 185)) {
+		delay(dt);
+	}
+	
+	if ((degree < 280) && (degree > 262)) {
+		delay(dt);
+	}
+
+if ((degree < 164) && (degree > 150)) {
+		delay(dt);
+	}
+
+if ((degree < 129) && (degree > 116)) {
+			delay(dt);
+		}
+
+if ((degree < 96) && (degree > 80)) {
+				delay(dt);
+			}
 	
 	stroke(255);
 	//	} else {
@@ -112,7 +144,7 @@ function draw() {
 		
 		degree = int(degrees(calcAngle));
 		textAlign(CENTER);
-		text(int(degrees(calcAngle)), windowWidth / 2 , windowHeight / 2 + 40 + 20);
+//		text(int(degrees(calcAngle)), windowWidth / 2 , windowHeight / 2 + 40 + 20);
 		if (dragging && degree < 10) {
 			count == 2;
 		}
